@@ -68,6 +68,16 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
+            display: block;
+        }
+
+        .logo-icon .fallback-logo {
+            display: none;
+            color: #1e3c72;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1;
         }
 
         .nav-menu {
@@ -398,8 +408,11 @@
         <nav>
             <div class="logo">
                 <div class="logo-icon">
-                    <img src="https://raw.githubusercontent.com/businessmanalexx68-stack/Map-16-Bratalampa/main/Screenshot_20250815_170658.jpg" alt="KARTA 16 Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div style="display: none; color: #1e3c72; font-weight: bold; font-size: 12px; text-align: center;">KARTA<br>16</div>
+                    <img src="https://res.cloudinary.com/dsjctfzj1/image/upload/v1755269349/Screenshot_20250815_170658_jpujiy.jpg" 
+                         alt="KARTA 16 Logo" 
+                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="fallback-logo" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">KARTA<br>16</div>
                 </div>
                 <span>KARTA 16</span>
             </div>
@@ -561,8 +574,11 @@
         <div class="footer-content">
             <div class="logo" style="justify-content: center; margin-bottom: 20px; color: white;">
                 <div class="footer-logo-icon">
-                    <img src="https://raw.githubusercontent.com/businessmanalexx68-stack/Map-16-Bratalampa/main/Screenshot_20250815_170658.jpg" alt="KARTA 16 Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div style="display: none; color: #1e3c72; font-weight: bold; font-size: 12px; text-align: center;">KARTA<br>16</div>
+                    <img src="https://res.cloudinary.com/dsjctfzj1/image/upload/v1755269349/Screenshot_20250815_170658_jpujiy.jpg" 
+                         alt="KARTA 16 Logo" 
+                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="fallback-logo" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">KARTA<br>16</div>
                 </div>
                 <span>KARTA 16</span>
             </div>
