@@ -304,6 +304,87 @@
             margin-bottom: 10px;
         }
 
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(30, 60, 114, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(30, 60, 114, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #e6f2ff, #cce6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-placeholder {
+            font-size: 4rem;
+            color: #1e3c72;
+            opacity: 0.7;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            color: #1e3c72;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #1e3c72, #3366cc);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-btn:hover {
+            background: linear-gradient(135deg, #2a5298, #4d7acc);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+
         /* Footer */
         footer {
             background: rgba(30, 60, 114, 0.95);
@@ -437,6 +518,7 @@
                 <li><a href="#home" class="active">Beranda</a></li>
                 <li><a href="#struktur">Struktur Organisasi</a></li>
                 <li><a href="#kegiatan">Kegiatan</a></li>
+                <li><a href="#produk">Produk Kami</a></li>
                 <li><a href="#tentang">Tentang</a></li>
                 <li><a href="#kontak">Kontak</a></li>
             </ul>
@@ -601,6 +683,56 @@
             </div>
         </section>
 
+        <section id="produk" class="content-section">
+            <h2 class="section-title">Produk Kami</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-placeholder">📦</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kaos KARTA 16</h3>
+                        <p class="product-description">Kaos resmi Karang Taruna Bratalampa dengan desain eksklusif dan bahan berkualitas tinggi.</p>
+                        <div class="product-price">Rp 75.000</div>
+                        <button class="product-btn" onclick="orderProduct('Kaos KARTA 16', '75000')">Pesan Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-placeholder">🧢</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Topi KARTA 16</h3>
+                        <p class="product-description">Topi dengan logo KARTA 16, cocok untuk kegiatan outdoor dan sebagai merchandise organisasi.</p>
+                        <div class="product-price">Rp 45.000</div>
+                        <button class="product-btn" onclick="orderProduct('Topi KARTA 16', '45000')">Pesan Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-placeholder">📚</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sticker Pack KARTA 16</h3>
+                        <p class="product-description">Set sticker dengan berbagai desain logo dan motto KARTA 16, perfect untuk personalisasi.</p>
+                        <div class="product-price">Rp 15.000</div>
+                        <button class="product-btn" onclick="orderProduct('Sticker Pack KARTA 16', '15000')">Pesan Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-placeholder">🎒</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Tas Totebag KARTA 16</h3>
+                        <p class="product-description">Totebag canvas dengan desain minimalis logo KARTA 16, ramah lingkungan dan multifungsi.</p>
+                        <div class="product-price">Rp 35.000</div>
+                        <button class="product-btn" onclick="orderProduct('Tas Totebag KARTA 16', '35000')">Pesan Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="tentang" class="content-section">
             <h2 class="section-title">Tentang KARTA 16</h2>
             <div style="text-align: center; line-height: 1.8;">
@@ -662,10 +794,8 @@
             <p>&copy; 2025 Karang Taruna Bratalampa Official. Semua hak dilindungi undang-undang.</p>
             <p style="margin-top: 10px; opacity: 0.8;">Membangun Generasi Muda Berkarakter dan Berdaya Saing</p>
             <div class="social-links">
-                <a href="#" title="Facebook">📘</a>
-                <a href="#" title="Instagram">📷</a>
-                <a href="#" title="Twitter">🐦</a>
-                <a href="#" title="YouTube">📺</a>
+                <a href="https://www.instagram.com/bratalampa.official?igsh=MWU0NzJhY2lqand6eQ==" target="_blank" title="Instagram">📷</a>
+                <a href="https://wa.me/6288901345038" target="_blank" title="WhatsApp">💬</a>
             </div>
         </div>
     </footer>
@@ -747,12 +877,30 @@
         }, observerOptions);
 
         // Observe all cards for animation
-        document.querySelectorAll('.position-card, .activity-card').forEach(card => {
+        document.querySelectorAll('.position-card, .activity-card, .product-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'all 0.6s ease';
             observer.observe(card);
         });
+
+        // Product order function
+        function orderProduct(productName, price) {
+            const message = `Halo! Saya ingin memesan *${productName}* dengan harga Rp ${new Intl.NumberFormat('id-ID').format(price)}. 
+
+Mohon informasi lebih lanjut mengenai:
+- Ketersediaan stok
+- Pilihan warna/ukuran (jika ada)
+- Cara pembayaran
+- Pengiriman
+
+Terima kasih!`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/6288901345038?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
-</html>
+                    </html>
