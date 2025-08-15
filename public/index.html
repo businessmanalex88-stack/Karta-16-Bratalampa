@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARTA 16 - Karang Taruna Bratalampa Official</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3366cc 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1e3c72, #3366cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .organization-icon {
+            width: 45px;
+            height: 45px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .organization-icon::before {
+            content: '🤝';
+            font-size: 28px;
+            display: block;
+        }
+
+        /* Alternative text-based logo if emoji doesn't work */
+        .logo-text {
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu li a:hover {
+            background: linear-gradient(135deg, #1e3c72, #3366cc);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1e3c72;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 100px;
+            text-align: center;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #e6f2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 50px 5%;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e3c72, #3366cc);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Structure Grid */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .position-card {
+            background: linear-gradient(135deg, #f8faff, #e6f2ff);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(30, 60, 114, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .position-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3c72, #3366cc);
+        }
+
+        .position-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(30, 60, 114, 0.2);
+        }
+
+        .position-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #1e3c72, #3366cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .position-card h3 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .position-card .name {
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+
+        /* Activities Section */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3366cc;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .activity-card h4 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 60, 114, 0.95);
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+            margin-top: 100px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.3s;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-section {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .structure-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Active section highlighting */
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, #1e3c72, #3366cc);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="organization-icon"></div>
+                </div>
+                <span>KARTA 16</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Beranda</a></li>
+                <li><a href="#struktur">Struktur Organisasi</a></li>
+                <li><a href="#kegiatan">Kegiatan</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>KARTA 16</h1>
+            <p>Karang Taruna Bratalampa Official - Membangun Generasi Muda Berkarakter</p>
+            <a href="#struktur" class="cta-button">Kenali Kami Lebih Dekat</a>
+        </section>
+
+        <section id="struktur" class="content-section">
+            <h2 class="section-title">Struktur Organisasi</h2>
+            <div class="structure-grid">
+                <div class="position-card">
+                    <div class="position-icon">KU</div>
+                    <h3>Ketua Umum</h3>
+                    <p class="name">Alawi Prasetya</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">WKU</div>
+                    <h3>Wakil Ketua Umum</h3>
+                    <p class="name">Aldyansyah</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">K1</div>
+                    <h3>Ketuplak I</h3>
+                    <p class="name">Moch Fery</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">K2</div>
+                    <h3>Ketuplak II</h3>
+                    <p class="name">Ahmad Syarif</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">S</div>
+                    <h3>Sekretaris</h3>
+                    <p class="name">Adilla Safitri & Nisa Nur Aulia</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">B</div>
+                    <h3>Bendahara</h3>
+                    <p class="name">Yuli Zahra A & Naila Fizria</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">DA</div>
+                    <h3>Divisi Acara</h3>
+                    <p class="name">Afifah Fauziah, Ahmad Syarif, Rahma dita, Elis Aghisna, Alfito Daffa</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">H</div>
+                    <h3>Humas</h3>
+                    <p class="name">Reza Ramadani, Alawi Prasetya, Restu Putra, Hafidz Bayan, Novan Adi Pratama, Rizki Fauzi, Rian Irawan</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">PDD</div>
+                    <h3>Divisi PDD</h3>
+                    <p class="name">Fani Karmila A, Hilla Amaliah R, Jessica Seftiani P, Rizki Fauzi</p>
+                </div>
+                <div class="position-card">
+                    <div class="position-icon">L</div>
+                    <h3>Divisi Logistik</h3>
+                    <p class="name">Kurniawan, Alizar Rabani, Muhammad Jnuar, Fadlan, Fathir</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="kegiatan" class="content-section">
+            <h2 class="section-title">Program & Kegiatan</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h4>Bakti Sosial Rutin</h4>
+                    <p>Program bantuan kepada masyarakat kurang mampu setiap bulan dengan distribusi sembako dan kebutuhan pokok.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Turnamen Olahraga</h4>
+                    <p>Mengadakan kompetisi futsal, voli, dan badminton untuk mempererat silaturahmi antar pemuda.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Pelatihan Keterampilan</h4>
+                    <p>Workshop digital marketing, desain grafis, dan kewirausahaan untuk mengembangkan skill pemuda.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Festival Seni Budaya</h4>
+                    <p>Pementasan seni tradisional dan modern untuk melestarikan budaya lokal dan mengembangkan kreativitas.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Gotong Royong Lingkungan</h4>
+                    <p>Kegiatan bersih-bersih kampung, penanaman pohon, dan program peduli lingkungan hidup.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Pendampingan Belajar</h4>
+                    <p>Program les gratis untuk anak-anak sekolah dasar dan menengah di lingkungan sekitar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tentang" class="content-section">
+            <h2 class="section-title">Tentang KARTA 16</h2>
+            <div style="text-align: center; line-height: 1.8;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #555;">
+                    Karang Taruna Bratalampa Official (KARTA 16) adalah organisasi kepemudaan yang berkomitmen untuk 
+                    mengembangkan potensi generasi muda melalui berbagai program pemberdayaan, pendidikan, dan kegiatan sosial.
+                </p>
+                <p style="margin-bottom: 2rem; color: #666;">
+                    Didirikan dengan semangat gotong royong dan persatuan, KARTA 16 berperan aktif dalam membangun 
+                    karakter pemuda yang berakhlak mulia, kreatif, dan berdaya saing tinggi. Kami percaya bahwa 
+                    pemuda adalah pilar utama kemajuan bangsa.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 3rem;">
+                    <div style="background: linear-gradient(135deg, #e6f2ff, #cce6ff); padding: 30px; border-radius: 15px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Visi</h4>
+                        <p style="color: #666;">Menjadi organisasi kepemudaan terdepan dalam membentuk generasi yang berkarakter, kreatif, dan berdaya saing.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #e6f2ff, #cce6ff); padding: 30px; border-radius: 15px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 15px;">Misi</h4>
+                        <p style="color: #666;">Mengembangkan potensi pemuda melalui pendidikan, pelatihan, dan kegiatan positif yang bermanfaat bagi masyarakat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak" class="content-section">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div style="text-align: center;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 2rem;">
+                    <div>
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">📍 Alamat</h4>
+                        <p>Jl.Citulampa Rt 03 Rw 16<br>Sumedang, Jawa Barat</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">📞 Telepon</h4>
+                        <p>(022) 1234-5678<br>WhatsApp: 0812-3456-7890</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">✉️ Email</h4>
+                        <p>info@karta16.org<br>karta16official@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px; color: white;">
+                <div class="logo-icon">
+                    <div class="organization-icon"></div>
+                </div>
+                <span>KARTA 16</span>
+            </div>
+            <p>&copy; 2025 Karang Taruna Bratalampa Official. Semua hak dilindungi undang-undang.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Membangun Generasi Muda Berkarakter dan Berdaya Saing</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="YouTube">📺</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu after clicking
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.position-card, .activity-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
