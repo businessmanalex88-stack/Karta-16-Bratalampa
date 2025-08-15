@@ -244,6 +244,23 @@
             color: white;
             font-size: 2rem;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .position-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .position-icon .icon-text {
+            position: relative;
+            z-index: 1;
         }
 
         .position-card h3 {
@@ -442,52 +459,76 @@
             <h2 class="section-title">Struktur Organisasi</h2>
             <div class="structure-grid">
                 <div class="position-card">
-                    <div class="position-icon">KU</div>
+                    <div class="position-icon">
+                        <img src="https://res.cloudinary.com/dsjctfzj1/image/upload/v1755269775/20250815_215541_x76w52.png" 
+                             alt="Ketua Umum" 
+                             onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="icon-text" style="display: none;">KU</span>
+                    </div>
                     <h3>Ketua Umum</h3>
                     <p class="name">Alawi Prasetya</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">WKU</div>
+                    <div class="position-icon">
+                        <span class="icon-text">WKU</span>
+                    </div>
                     <h3>Wakil Ketua Umum</h3>
                     <p class="name">Aldyansyah</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">K1</div>
+                    <div class="position-icon">
+                        <span class="icon-text">K1</span>
+                    </div>
                     <h3>Ketuplak I</h3>
                     <p class="name">Moch Fery</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">K2</div>
+                    <div class="position-icon">
+                        <span class="icon-text">K2</span>
+                    </div>
                     <h3>Ketuplak II</h3>
                     <p class="name">Ahmad Syarif</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">S</div>
+                    <div class="position-icon">
+                        <span class="icon-text">S</span>
+                    </div>
                     <h3>Sekretaris</h3>
                     <p class="name">Adilla Safitri & Nisa Nur Aulia</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">B</div>
+                    <div class="position-icon">
+                        <span class="icon-text">B</span>
+                    </div>
                     <h3>Bendahara</h3>
                     <p class="name">Yuli Zahra A & Naila Fizria</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">DA</div>
+                    <div class="position-icon">
+                        <span class="icon-text">DA</span>
+                    </div>
                     <h3>Divisi Acara</h3>
                     <p class="name">Afifah Fauziah, Ahmad Syarif, Rahma dita, Elis Aghisna, Alfito Daffa</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">H</div>
+                    <div class="position-icon">
+                        <span class="icon-text">H</span>
+                    </div>
                     <h3>Humas</h3>
                     <p class="name">Reza Ramadani, Alawi Prasetya, Restu Putra, Hafidz Bayan, Novan Adi Pratama, Rizki Fauzi, Rian Irawan</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">PDD</div>
+                    <div class="position-icon">
+                        <span class="icon-text">PDD</span>
+                    </div>
                     <h3>Divisi PDD</h3>
                     <p class="name">Fani Karmila A, Hilla Amaliah R, Jessica Seftiani P, Rizki Fauzi</p>
                 </div>
                 <div class="position-card">
-                    <div class="position-icon">L</div>
+                    <div class="position-icon">
+                        <span class="icon-text">L</span>
+                    </div>
                     <h3>Divisi Logistik</h3>
                     <p class="name">Kurniawan, Alizar Rabani, Muhammad Jnuar, Fadlan, Fathir</p>
                 </div>
