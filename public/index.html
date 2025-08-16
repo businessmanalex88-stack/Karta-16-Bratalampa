@@ -156,12 +156,113 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             animation: fadeInUp 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-button:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Audio Controls */
+        .audio-controls {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .audio-controls.active {
+            display: flex;
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .audio-toggle {
+            background: linear-gradient(135deg, #1e3c72, #3366cc);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        .audio-info {
+            color: #1e3c72;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .music-wave {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            margin-left: 8px;
+        }
+
+        .music-wave span {
+            display: inline-block;
+            width: 3px;
+            height: 15px;
+            background: #3366cc;
+            border-radius: 1px;
+            animation: musicWave 1.5s ease-in-out infinite;
+        }
+
+        .music-wave span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .music-wave span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .music-wave span:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes musicWave {
+            0%, 100% {
+                height: 8px;
+                opacity: 0.3;
+            }
+            50% {
+                height: 20px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0);
+            }
         }
 
         /* Content Sections */
@@ -539,8 +640,30 @@
         <section id="home" class="hero">
             <h1>KARTA 16</h1>
             <p>Taruna Karya Bratalampa Official - Membangun Generasi Muda Berkarakter</p>
-            <a href="#struktur" class="cta-button">Kenali Kami Lebih Dekat</a>
+            <a href="#struktur" class="cta-button" id="ctaButton">🎵 Kenali Kami Lebih Dekat</a>
         </section>
+
+        <!-- Audio Controls -->
+        <div class="audio-controls" id="audioControls">
+            <div class="audio-info">
+                <span id="audioStatus">Tanah Airku</span>
+                <div class="music-wave" id="musicWave" style="display: none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <button class="audio-toggle" id="audioToggle" title="Pause/Play Music">
+                <span id="audioIcon">⏸️</span>
+            </button>
+        </div>
+
+        <!-- Audio Element -->
+        <audio id="backgroundAudio" preload="auto" loop>
+            <source src="https://res.cloudinary.com/dsjctfzj1/video/upload/v1755323418/Lagu_nasional_tanah_airku_instrumental_320_febhkp.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
         <section id="struktur" class="content-section">
             <h2 class="section-title">Struktur Organisasi</h2>
@@ -746,7 +869,7 @@
                     mengembangkan potensi generasi muda melalui berbagai program pemberdayaan, pendidikan, dan kegiatan sosial.
                 </p>
                 <p style="margin-bottom: 2rem; color: #666;">
-                    Didirikan dengan semangat gotong royong dan persatuan, Taruna Karya ini berperan aktif dalam membangun 
+                    Didirikan dengan semangat gotong royong dan persatuan, KARTA 16 berperan aktif dalam membangun 
                     karakter pemuda yang berakhlak mulia, kreatif, dan berdaya saing tinggi. Kami percaya bahwa 
                     pemuda adalah pilar utama kemajuan bangsa.
                 </p>
