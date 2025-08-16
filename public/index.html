@@ -158,6 +158,7 @@
             animation: fadeInUp 1s ease-out 0.6s both;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -560,6 +561,25 @@
             }
         }
 
+        /* Audio loading indicator */
+        .audio-loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 10000;
+            display: none;
+        }
+
+        .audio-loading.show {
+            display: block;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hamburger {
@@ -597,6 +617,11 @@
             .structure-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+
+            .audio-controls {
+                right: 15px;
+                padding: 10px 15px;
             }
         }
 
@@ -643,6 +668,14 @@
             <a href="#struktur" class="cta-button" id="ctaButton">🎵 Kenali Kami Lebih Dekat</a>
         </section>
 
+        <!-- Audio Loading Indicator -->
+        <div class="audio-loading" id="audioLoading">
+            <p>Memuat musik...</p>
+            <div style="margin-top: 10px;">
+                <div style="display: inline-block; width: 20px; height: 20px; border: 2px solid #1e3c72; border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            </div>
+        </div>
+
         <!-- Audio Controls -->
         <div class="audio-controls" id="audioControls">
             <div class="audio-info">
@@ -660,7 +693,7 @@
         </div>
 
         <!-- Audio Element -->
-        <audio id="backgroundAudio" loop>
+        <audio id="backgroundAudio" loop preload="metadata">
             <source src="https://res.cloudinary.com/dsjctfzj1/video/upload/v1755323418/Lagu_nasional_tanah_airku_instrumental_320_febhkp.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
@@ -932,7 +965,126 @@
         </div>
     </footer>
 
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
     <script>
+        // Audio management
+        let audioInitialized = false;
+        let isPlaying = false;
+        const audio = document.getElementById('backgroundAudio');
+        const audioControls = document.getElementById('audioControls');
+        const audioToggle = document.getElementById('audioToggle');
+        const audioIcon = document.getElementById('audioIcon');
+        const musicWave = document.getElementById('musicWave');
+        const audioLoading = document.getElementById('audioLoading');
+        const ctaButton = document.getElementById('ctaButton');
+
+        // Initialize audio system
+        function initializeAudio() {
+            if (audioInitialized) return;
+            
+            audioLoading.classList.add('show');
+            
+            // Set audio properties for better mobile compatibility
+            audio.volume = 0.6;
+            audio.preload = 'metadata';
+            
+            // Load and play audio
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Audio playing successfully
+                    audioInitialized = true;
+                    isPlaying = true;
+                    audioControls.classList.add('active');
+                    musicWave.style.display = 'inline-flex';
+                    audioIcon.textContent = '⏸️';
+                    audioLoading.classList.remove('show');
+                    
+                    // Scroll to struktur section
+                    setTimeout(() => {
+                        document.getElementById('struktur').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 500);
+                }).catch(error => {
+                    console.log('Audio autoplay failed:', error);
+                    audioLoading.classList.remove('show');
+                    
+                    // Show controls even if audio fails to auto-play
+                    audioControls.classList.add('active');
+                    audioIcon.textContent = '▶️';
+                    audioInitialized = true;
+                    
+                    // Still scroll to section
+                    setTimeout(() => {
+                        document.getElementById('struktur').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 500);
+                });
+            }
+        }
+
+        // Toggle audio playback
+        function toggleAudio() {
+            if (!audioInitialized) {
+                initializeAudio();
+                return;
+            }
+            
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                audioIcon.textContent = '▶️';
+                musicWave.style.display = 'none';
+            } else {
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        audioIcon.textContent = '⏸️';
+                        musicWave.style.display = 'inline-flex';
+                    }).catch(error => {
+                        console.log('Audio play failed:', error);
+                    });
+                }
+            }
+        }
+
+        // Event listeners
+        ctaButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            initializeAudio();
+        });
+
+        audioToggle.addEventListener('click', toggleAudio);
+
+        // Handle audio events
+        audio.addEventListener('loadstart', () => {
+            console.log('Audio loading started');
+        });
+
+        audio.addEventListener('canplay', () => {
+            console.log('Audio can play');
+        });
+
+        audio.addEventListener('error', (e) => {
+            console.log('Audio error:', e);
+            audioLoading.classList.remove('show');
+            audioControls.classList.add('active');
+            audioIcon.textContent = '❌';
+            document.getElementById('audioStatus').textContent = 'Audio Error';
+        });
+
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
@@ -1033,6 +1185,12 @@ Terima kasih!`;
             
             window.open(whatsappUrl, '_blank');
         }
+
+        // Preload audio on page load for better mobile performance
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preload audio metadata
+            audio.load();
+        });
     </script>
 </body>
 </html>
